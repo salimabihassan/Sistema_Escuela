@@ -1,9 +1,9 @@
 <?php
 // =======================================================
-// Archivo: registrar_notas_anotaciones_imp.php
+// Archivo: registrar_notas_anotaciones_impS.php
 // Autor: Salim I. Abi Hassan E.
 // Fecha de actualización PHP: 15-10-2025 (PHP 8.2)
-// Descripción: Informe de Notas Final
+// Descripción: Informe de Notas Semestral
 // =======================================================
 
 include("conexiones.php");
@@ -205,7 +205,7 @@ if ($datos_alumno && $datos_alumno['borrado'] == 0) {
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<title>INFORME DE NOTAS FINAL</title>
+<title>INFORME DE NOTAS SEMESTRAL</title>
 <style>
 body { font-family: 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 14px; background: #f7f7f7; margin: 0; padding: 0; }
 .caja { background-color: #e3eafc; padding: 18px 24px; border-radius: 12px; margin-bottom: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); width: 1024px; }
@@ -236,7 +236,7 @@ tr:nth-child(even) td { background: #f5f8fd; }
 
 <table>
     <tr>
-        <td colspan="4" class="titulo" style="background:#e3eafc;">INFORME DE NOTAS FINAL</td>
+        <td colspan="4" class="titulo" style="background:#e3eafc;">INFORME DE NOTAS SEMESTRAL</td>
     </tr>
     <tr>
         <td colspan="4" style="background:#f5f8fd;"><strong>DATOS DEL ALUMNO</strong></td>
