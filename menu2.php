@@ -1,13 +1,14 @@
 <?php
 // filepath: c:\xampp\htdocs\Sistema_Escuela\menu2.php
 header('Content-Type: text/html; charset=utf-8');
-session_start();
 
-// Validar sesión
-if (empty($_SESSION['sesion_intranet'])) {
-    header('Location: index.php');
-    exit();
-}
+
+// incluir validación de sesión y UTF-8
+include __DIR__ . '/auth.php';
+
+// luego incluir conexión a BD
+include __DIR__ . '/conexiones.php';
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es" dir="ltr">
@@ -70,7 +71,7 @@ body {
             </ul>
           </li>
           <li>
-            <a class="cerrar_sesion" href="cerrar sesion.php" target="_top">Cerrar Sesión</a>
+            <a class="cerrar_sesion" href="cerrar_sesion.php" target="_top">Cerrar Sesión</a>
           </li>
         </ul>
       </div>

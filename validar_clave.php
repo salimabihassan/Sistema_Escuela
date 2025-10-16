@@ -1,17 +1,19 @@
 <?php
 
-session_start();
-include("conexiones.php");
-header('Content-Type: text/html; charset=ISO-8859-1');
-error_reporting(0);
 
+// luego incluir conexión a BD
+include __DIR__ . '/conexiones.php';
+
+// Inicializar variables
 $encontrado = "NO";
 $confirmado = "NO";
-$txtcorreo = trim($_POST["txtcorreo"] ?? '');
-$btnenviar = $_POST["btnenviar"] ?? '';
-$txtrespuesta = trim($_POST["txtrespuesta"] ?? '');
-$txtclave = trim($_POST["txtclave"] ?? '');
-$txtconfirma = trim($_POST["txtconfirma"] ?? '');
+$txtcorreo = isset($_POST["txtcorreo"]) ? trim($_POST["txtcorreo"]) : '';
+$btnenviar = isset($_POST["btnenviar"]) ? $_POST["btnenviar"] : '';
+$txtrespuesta = isset($_POST["txtrespuesta"]) ? trim($_POST["txtrespuesta"]) : '';
+$txtclave = isset($_POST["txtclave"]) ? trim($_POST["txtclave"]) : '';
+$txtconfirma = isset($_POST["txtconfirma"]) ? trim($_POST["txtconfirma"]) : '';
+$txtpregunta = '';
+$txtusuario = '';
 
 if ($btnenviar == "Enviar") {
     $coneccion = conectarse_escuela();
@@ -87,133 +89,208 @@ if (!empty($txtclave) && !empty($txtconfirma) && $confirmado == "SI") {
 }
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es" dir="ltr">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<META  NAME="robots" CONTENT="NOINDEX,FOLLOW">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="NOINDEX,FOLLOW">
+    <link rel="stylesheet" href="botones.css" type="text/css" media="screen">
+    <title>Validar Clave - Sistema Escuela</title>
+    <style>
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
+        }
 
-<link rel="stylesheet" href="botones.css" type="text/css" media="screen" />
-<title>Registrar Usuarios</title>
-<style type="text/css">
-<!--
-body {
-	background-image: url();
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-a:link {
-	color: #000;
-	text-decoration: none;
-}
-a:visited {
-	text-decoration: none;
-	color: #000;
-}
-a:hover {
-	text-decoration: none;
-	color: #000;
-}
-a:active {
-	text-decoration: none;
-	color: #000;
-}
-body,td,th {
-	font-family: Verdana, Geneva, sans-serif;
-	font-size: 12px;
-}
+        body, td, th {
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
 
-div.formulario {
-border: 1px solid #CCC;
--moz-border-radius: 15px;
--webkit-border-radius: 15px;
-padding: 10px;
-width:350px;
+        /* Enlaces */
+        a {
+            color: #000;
+            text-decoration: none;
+        }
 
+        a:hover {
+            text-decoration: underline;
+            color: #000099;
+        }
 
-} 
--->
-</style>
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Formulario */
+        .formulario {
+            border: 1px solid #CCC;
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        /* Tabla del formulario */
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .form-table td {
+            padding: 8px;
+            vertical-align: middle;
+        }
+
+        /* Inputs */
+        input[type="text"], 
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #000099;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 0, 153, 0.3);
+        }
+
+        /* Botón */
+        .btn-submit {
+            background-color: #000099;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-submit:hover {
+            background-color: #000066;
+        }
+
+        /* Logo */
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Etiquetas */
+        .label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .label-blue {
+            color: #000099;
+        }
+
+        /* Mensajes */
+        .back-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-
-<br/><br/>
-		<div align="center">
-        <div class="formulario" >
-      <form action="validar_clave.php" method="post" name="frmentrar" target="_top" id="frmentrar" >
-        
-        <table width="350" height="240" border="0" align="center" cellpadding="0" cellspacing="3" >
-          <tr>
-            <td height="60" colspan="2" align="center" ><img src="imagenes/logo altas cumbres.jpg"width="290" height="171" /></td>
-          </tr>
-          
-          <tr>
-            <td width="170" height="24" align="left" bgcolor="#FFFFFF" ><em><strong>Correo Electronico:</strong></em></td>
-            <td width="171" height="24" align="left" bgcolor="#FFFFFF"  >
-            <input name="txtcorreo" type="text" size="25" maxlength="40" id="txtcorreo" value="<?php echo $txtcorreo; ?>" /></td>
-          </tr>
-            <tr>
-			
-			<?php  if ($encontrado=="SI") {  ?>
+<body>
+    <div class="container">
+        <div class="formulario">
+            <div class="logo">
+                <img src="imagenes/logo altas cumbres.jpg" alt="Logo Altas Cumbres" width="290" height="171">
+            </div>
             
-            <td width="170" height="24" align="left" bgcolor="#FFFFFF" >
-            <em><strong>Pregunta secreta:</strong></em></td>
-            <td width="171" height="24" align="left" bgcolor="#FFFFFF"  >
-            <input name="txtpregunta" type="text" size="25" maxlength="40" id="txtpregunta" value="<?php echo $txtpregunta; ?>" />
-            </td>
-          </tr>
-            <tr>
-            <td width="170" height="24" align="left" bgcolor="#FFFFFF"  >
-            <em><strong>Respuesta Secreta:</strong></em></td>
-            <td width="171" height="24" align="left" bgcolor="#FFFFFF"  >
-            <input name="txtrespuesta" type="text" size="25" maxlength="40" id="txtrespuesta" value="<?php echo $txtrespuesta; ?>" />
-            </td>
-          </tr>
+            <form action="validar_clave.php" method="post" name="frmentrar" id="frmentrar">
+                <table class="form-table">
           
-           <?php  }  ?>
+                    <tr>
+                        <td class="label">Correo Electrónico:</td>
+                        <td>
+                            <input name="txtcorreo" type="text" maxlength="40" id="txtcorreo" 
+                                   value="<?php echo htmlspecialchars($txtcorreo); ?>" required>
+                        </td>
+                    </tr>
+                    
+                    <?php if ($encontrado == "SI") { ?>
+                    <tr>
+                        <td class="label">Pregunta secreta:</td>
+                        <td>
+                            <input name="txtpregunta" type="text" maxlength="40" id="txtpregunta" 
+                                   value="<?php echo htmlspecialchars($txtpregunta); ?>" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">Respuesta Secreta:</td>
+                        <td>
+                            <input name="txtrespuesta" type="text" maxlength="40" id="txtrespuesta" 
+                                   value="<?php echo htmlspecialchars($txtrespuesta); ?>" 
+                                   autocomplete="off" required>
+                        </td>
+                    </tr>
+                    <?php } ?>
           
-          <?php  if ($confirmado=="SI")  {  ?>
+                    <?php if ($confirmado == "SI") { ?>
+                    <tr>
+                        <td class="label label-blue">Usuario:</td>
+                        <td>
+                            <input name="txtusuario" type="text" id="txtusuario" 
+                                   value="<?php echo htmlspecialchars($txtusuario); ?>" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label label-blue">Nueva Contraseña:</td>
+                        <td>
+                            <input name="txtclave" type="password" maxlength="40" id="txtclave" 
+                                   value="<?php echo htmlspecialchars($txtclave); ?>" 
+                                   autocomplete="new-password" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label label-blue">Confirmar Contraseña:</td>
+                        <td>
+                            <input name="txtconfirma" type="password" maxlength="40" id="txtconfirma" 
+                                   value="<?php echo htmlspecialchars($txtconfirma); ?>" 
+                                   autocomplete="new-password" required>
+                        </td>
+                    </tr>
+                    <?php } ?>
           
-          <td width="170" height="24" align="left" bgcolor="#FFFFFF"  >
-            <em><strong><font color="#000099">Usuario:</font></strong></em></td>
-            <td width="171" height="24" align="left" bgcolor="#FFFFFF" >
-            <input name="txtusuario" type="text" disabled="disabled" id="txtclave" value="<?php echo $txtusuario; ?>" size="25" maxlength="40" readonly />
-            </td>
-          </tr>
-          
-              <td width="170" height="24" align="left" bgcolor="#FFFFFF"  >
-            <em><strong><font color="#000099">Nueva Contraseña:</font></strong></em></td>
-            <td width="171" height="24" align="left" bgcolor="#FFFFFF" ><input name="txtclave" type="password" size="25" maxlength="40" id="txtclave" value="<?php echo $txtclave; ?>" /></td>
-          </tr>
-            <tr>
-            <td width="170" height="24" align="left" bgcolor="#FFFFFF" >
-            <em><strong><font color="#000099">Confirmar Contraseña:</font></strong></em></td>
-            <td width="171" height="24" align="left" bgcolor="#FFFFFF" >
-            <input name="txtconfirma" type="password" size="25" maxlength="40" id="txtconfirma" value="<?php echo $txtconfirma; ?>" />
-            </td>
-          </tr>
-           <?php  }  ?>
-          
-          <tr>
-            <td height="42" colspan="2" align="center" bgcolor="#FFFFFF" >
-            <input type="submit" name="btnenviar" class="button medium red" value="Enviar" id="btnenviar" />
-            </td>
-          </tr>
-        </table>
-	</form>
-</div>
-</div>
-
-<p align="center">
- 
-  
-  <a href="index.php" target="_top">
-<strong>[<font color="#000099">Volver</font> ]</strong></a>
-
- </p>
-
+                    <tr>
+                        <td colspan="2" style="text-align: center; padding: 20px;">
+                            <input type="submit" name="btnenviar" value="Enviar" id="btnenviar" class="btn-submit">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        
+        <div class="back-link">
+            <a href="index.php">
+                <strong>[Volver]</strong>
+            </a>
+        </div>
+    </div>
 </body>
 </html>
