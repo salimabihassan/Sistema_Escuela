@@ -17,7 +17,6 @@
 
 include("conexiones.php");
 header('Content-Type: text/html; charset=UTF-8');
-error_reporting(0);
 $conexion = conectarse_escuela();
 session_start();
 

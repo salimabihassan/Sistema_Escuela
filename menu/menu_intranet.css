@@ -1,0 +1,135 @@
+/* Menu 02 */
+.menu,
+.menu ul,
+.menu li,
+.menu a {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+}
+
+
+
+
+.menu {	
+	height: 40px;
+	width: 1100px;
+
+	background: #4c4e5a;
+	background: -webkit-linear-gradient(top,#FFFFFF 0%,#1D628B 100%);
+	background: -moz-linear-gradient(top,#FFFFFF 0%,#1D628B 100%);
+	background: -o-linear-gradient(top,#FFFFFF 0%,#1D628B 100%);
+	background: -ms-linear-gradient(top,#FFFFFF 0%,#1D628B 100%);
+	background: linear-gradient(top,#FFFFFF 0%,#1D628B 100%);
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.menu li {
+	position: relative;
+	list-style: none;
+	float: left;
+	display: block;
+	height: 40px;
+}
+
+/* Links */
+
+.menu li a {
+	display: block;
+	padding: 0 38px;
+	margin: 6px 0;
+	line-height: 28px;
+	text-decoration: none;
+	
+	border-left: 1px solid #C5E2F3;
+	border-right: 1px solid #007777;
+
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 13px;
+
+	color: #9FFF9F;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.6);
+
+	-webkit-transition: color .2s ease-in-out;
+	-moz-transition: color .2s ease-in-out;
+	-o-transition: color .2s ease-in-out;
+	-ms-transition: color .2s ease-in-out;
+	transition: color .2s ease-in-out;
+}
+
+.menu li:first-child a { border-left: none; }
+.menu1 li:last-child a{ border-right: none; }
+
+.menu1 li:hover > a { color: #1D628B; }
+
+/* Sub Menu */
+
+.menu ul {
+	position: absolute;
+	top:  30px;
+	left: 0;
+	opacity: 0;
+	
+	background: #00366C;
+
+	-webkit-border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
+
+	-webkit-transition: opacity .25s ease .1s;
+	-moz-transition: opacity .25s ease .1s;
+	-o-transition: opacity .25s ease .1s;
+	-ms-transition: opacity .25s ease .1s;
+	transition: opacity .25s ease .1s;
+}
+
+.menu li:hover > ul { opacity: 1; }
+
+.menu ul li {
+	height: 0;
+	overflow: hidden;
+	padding: 0;
+
+	-webkit-transition: height .25s ease .1s;
+	-moz-transition: height .25s ease .1s;
+	-o-transition: height .25s ease .1s;
+	-ms-transition: height .25s ease .1s;
+	transition: height .25s ease .1s;
+}
+
+.menu li:hover > ul li {
+	height: 40px;
+	overflow: visible;
+	padding: 0;
+}
+
+.menu ul li a {
+	width: 150px;
+	padding: 4px 0 4px 40px;
+	margin: 0;
+
+	border: none;
+	border-bottom: 1px solid #1D628B;
+}
+
+.menu ul li:last-child a { border: none; }
+
+/* Icons */
+
+.menu a.documentos { background:url(img/arrow.png) no-repeat 6px center; }
+
+.menu a.mensajes    { background:  url(img/bubble.png) no-repeat 6px center; }
+.menu a.inicio      { background: url(img/home.png) no-repeat 6px center; }
+.menu a.buscar	    { background: url(img/lupa.png) no-repeat 6px center; }
+.menu a.registrar   { background: url(img/registrar.png) no-repeat 6px center; }
+.menu a.ver         { background:url(img/reportes.png) no-repeat 6px center; }
+.menu a.administrar { background:url(img/Eliminar.png) no-repeat 6px center; }
+.menu a.procesos { background:url(img/administrar.png) no-repeat 6px center; }
+.menu a.consulta { background:url(img/modificar.png) no-repeat 6px center; }
+.menu a.mantenimiento { background:url(img/mantenimiento.png) no-repeat 6px center; }
+.menu a.cerrar_sesion { background:url(img/cerrar_sesion.png) no-repeat 6px center; }

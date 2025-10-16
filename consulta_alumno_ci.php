@@ -1,6 +1,12 @@
 <?php
 // filepath: c:\xampp\htdocs\Sistema_Escuela\consulta_alumno_ci.php
-include("conexiones.php");
+// incluir validación de sesión y UTF-8
+include __DIR__ . '/auth.php';
+
+// luego incluir conexión a BD
+include __DIR__ . '/conexiones.php';
+
+// Configurar UTF-8
 error_reporting(0);
 header('Content-Type: text/html; charset=UTF-8');
 

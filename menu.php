@@ -3,16 +3,16 @@
 header('Content-Type: text/html; charset=utf-8');
 session_start();
 
-// Validar sesión
-if (empty($_SESSION['sesion_intranet'])) {
-    header('Location: index.php');
-    exit();
-} else {
-    if ($_SESSION["nivel_intranet"] == '0') {
-        header('Location: index.php');
-        exit();
-    }
-}
+// incluir validación de sesión y UTF-8
+include __DIR__ . '/auth.php';
+
+// luego incluir conexión a BD
+include __DIR__ . '/conexiones.php';
+
+// Salida UTF-8
+header('Content-Type: text/html; charset=UTF-8');
+
+
 
 $grado1 = $_SESSION["grado"] ?? '';
 ?>
@@ -88,6 +88,7 @@ body {
               <li><a class="documentos" href="consulta_auditoria.php" target="cuerpo">Auditor&iacute;a</a></li>
               <li><a class="documentos" href="Manual.pdf" target="_new">Manual de Usuario</a></li>
               <li><a class="documentos" href="respaldo/index.php" target="_new">Respaldar BD</a></li>
+              <li><a class="documentos" href="respaldo/estado_respaldos.php" target="cuerpo">Respaldos Autom&aacute;ticos</a></li>
             </ul>
           </li>
           <li>

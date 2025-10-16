@@ -15,9 +15,15 @@
  * Autor: Sistema Escolar
  */
 
-include("conexiones.php");
+// incluir validación de sesión y UTF-8
+include __DIR__ . '/auth.php';
+
+// luego incluir conexión a BD
+include __DIR__ . '/conexiones.php';
+
+// Configurar UTF-8
 header('Content-Type: text/html; charset=UTF-8');
-session_start();
+
 
 $ci_prof = $_POST['ci_prof'] ?? '';
 $ci_prof2 = trim($_POST['ci_prof2'] ?? '');

@@ -95,7 +95,7 @@ if (!empty($txtclave) && !empty($txtconfirma) && $confirmado == "SI") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="NOINDEX,FOLLOW">
-    <link rel="stylesheet" href="botones.css" type="text/css" media="screen">
+
     <title>Validar Clave - Sistema Escuela</title>
     <style>
         /* Reset básico */

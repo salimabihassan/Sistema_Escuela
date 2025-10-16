@@ -103,32 +103,6 @@ switch ($button) {
         }
         break;
 
-    case "Consultar":
-        $consulta_consultar = $conexion->prepare("SELECT * FROM ambito WHERE cod_ambito = ?");
-        $consulta_consultar->bind_param("i", $cod_ambito);
-        $consulta_consultar->execute();
-        $resultado_consultar = $consulta_consultar->get_result();
-
-        if ($resultado_consultar->num_rows > 0) {
-            $datos_consultar = $resultado_consultar->fetch_assoc();
-            $borrado = $datos_consultar['borrado'];
-            if ($borrado == 0) {
-                $id_ambito = $datos_consultar['id_ambito'];
-                $nom_ambito = $datos_consultar['nom_ambito'];
-            } else {
-                echo "<script>alert('Este código de ámbito fue eliminado de la Base de Datos. Para recuperarlo vaya a la Papelera de Reciclaje.');</script>";
-                $nom_ambito = "";
-                $id_ambito = "";
-                $borrado = "";
-            }
-        } else {
-            echo "<script>alert('Código no registrado');</script>";
-            $nom_ambito = "";
-            $id_ambito = "";
-            $borrado = "";
-        }
-        break;
-
     case "Eliminar":
         $consulta_buscar = $conexion->prepare("SELECT * FROM ambito WHERE id_ambito = ?");
         $consulta_buscar->bind_param("i", $id_ambito);
