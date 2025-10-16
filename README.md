@@ -180,8 +180,8 @@ chmod 644 *.php
 ## 📞 **Soporte y Contacto**
 
 **🏫 Institución**: Escuela Básica Particular Nº 2271  
-**📧 Email**: caltascumbres@gmail.com  
-**📱 Teléfono**: 316 55 18  
+**📧 Email**: ingsalimabihassan@gmail.com  
+**📱 Teléfono**: +56 9 5042 0828  
 **🆔 RBD**: 26392-3
 
 ## 📄 **Licencia**
