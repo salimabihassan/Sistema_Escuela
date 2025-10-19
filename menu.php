@@ -88,7 +88,6 @@ body {
               <li><a class="documentos" href="consulta_auditoria.php" target="cuerpo">Auditor&iacute;a</a></li>
               <li><a class="documentos" href="Manual.pdf" target="_new">Manual de Usuario</a></li>
               <li><a class="documentos" href="respaldo/index.php" target="_new">Respaldar BD</a></li>
-              <li><a class="documentos" href="respaldo/estado_respaldos.php" target="cuerpo">Respaldos Autom&aacute;ticos</a></li>
             </ul>
           </li>
           <li>
